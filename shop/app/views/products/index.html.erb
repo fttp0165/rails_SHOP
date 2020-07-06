@@ -41,8 +41,8 @@
                                         <div class="thumbnail">
                                        <%= image_tag product[:image_url] %>
                                          <div class="caption">
-                                           <h3> <%= product[:name]%></h3>
-                                           <p><%= product[:description]%></p>
+                                            <h3> <%=%></h3>
+                                           <p><%= "#{product[:id]}. #{product[:description]}"%></p>
                                            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
                                          </div>
                                        </div>
@@ -68,6 +68,7 @@
                                                           <%= link_to root_path(page:(@page+2)) do%>
                                                                     <span aria-hidden="true">&raquo;</span>
                                                           <%end%>
+
                                                       </li>
                                                         <%end%>
                                               </ul>
