@@ -1,0 +1,17 @@
+<h3>編輯產品</h3>
+<div class="row">
+<div class="col-xs-12">
+<%= form_for  @product, method: :put  do | product |  %>
+<%= product.label :名稱%>
+<%= product.text_field :name%> <br />
+<%= product.label :敘述%>
+<%= product.text_field :description%> <br />
+<%= product.label :價格%>
+<%= product.text_field :price%> <br />
+<%= product.label :圖片連結%>
+<%= product.text_field :image_url%> <br />
+<%= product.submit "更新", class:"btn btn-primary"%>
+<%= link_to "back" ,root_path , class:"btn btn-primary" %>
+ <% end %>
+ </div >
+</div>

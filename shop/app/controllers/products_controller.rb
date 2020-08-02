@@ -21,27 +21,44 @@ class ProductsController < ApplicationController
        else
           @last_page=(  @products.count / LIMITED_PROFUCTS_NUMBER)
        end
-             #(1..PRODUCTS_COUNT).each do |index|
-
-                 # product={
-                 #      id: index,
-                 #     name:"flower#{index}",
-                 #     description: "很美的花 ",
-                 #     image_url:"https://images.pexels.com/photos/3392982/pexels-photo-3392982.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                 #    }
-        #      @products << product
-        # end
          @products=@products.offset(@page*  LIMITED_PROFUCTS_NUMBER).limit(LIMITED_PROFUCTS_NUMBER)
   end
 
- def new
-    @note=flash[:note]
- end
+    def new
+        @note=flash[:note]
+        @product=Product.new
+    end
 
- def create
-     flash[:note] =params[:name]
-  redirect_to  action: :new
- end
+    def create
+      product=Product.create(product_permit)
+      flash[:note] =product.id
+      redirect_to  action: :new
+    end
+
+    def show
+          @product =Product.find_by_id(params[:id])
+    end
 
 
+    def edit
+          @product =Product.find_by_id(params[:id])
+          if @product.blank?
+              redirect_to root_path
+              return
+          end
+    end
+
+    def update
+      product =Product.find(params[:id])
+      product.update(product_permit)
+      redirect_to action: :edit
+    end
+    def destroy
+        product=Product.find(params[:id])
+        product.destroy
+        redirect_to action: :index
+    end
+   def product_permit
+       params.require(:product).permit([:name,:description,:image_url,:price])
+    end
 end
