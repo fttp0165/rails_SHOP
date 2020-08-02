@@ -1,0 +1,38 @@
+// Place all the styles related to the flower controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+body{
+            background-color: #F3EAE1;
+            margin: 0;
+            padding: 0;
+}
+.front_index{
+    padding: 0px;
+    display: block;
+    width: 100%;
+    margin: 0px auto;
+    background-size: cover;
+    background-position: 100%;
+    background-attachment: fixed;
+}
+
+.nav_head{
+  margin: 0;
+  padding: 0;
+}
+
+
+.index_context{
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
+  font-family: 'ZCOOL QingKe HuangYou', cursive;
+  font-size: 30px;
+  text-align:center;
+  margin-top: 150px;
+}
+.index_picture{
+   width: 300px;
+   height: 300px;
+   margin-top: 50px;
+   margin-right: 50px;
+}
