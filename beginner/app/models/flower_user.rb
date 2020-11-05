@@ -1,0 +1,2 @@
+class FlowerUser < ApplicationRecord
+end

@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+			(1..100).each do |index|
+					bundle_flower={
+		   			name: "花火",
+		   			description: "玫瑰美式捧花",
+		   			image_url: "flower_picture/DSC_0083.JPG"
+   					}
+   				FlowerProduct.create(bundle_flower)
+   			end
+

@@ -14,8 +14,10 @@
  *= require  bootstrap/bootstrap-theme
  *= require_tree .
  *= require_self
- */
-.logo{
-              font-family: 'Liu Jian Mao Cao', cursive;
-              font-size: 45px;
-          }
+*/
+ 
+body{
+  
+            margin: 0px;
+            padding: 0px;
+}

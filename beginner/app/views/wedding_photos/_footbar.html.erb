@@ -1,0 +1,30 @@
+
+<nav aria-label="...">
+	  	  <ul class="pagination">
+	  	  		<%if @page > @first_page%>
+	  	  		<li>
+	  	  			<%= link_to wedding_photos_path(page:(@page-1)) do%>
+	  	  			 Previous
+	  	  			<%end%>
+	  	  		</li>
+	  	  		<%end%>
+
+	  	  		
+			    <li class="active">
+					<% (@page..@last_page).each do |page_number| %>
+			    	<li><%= link_to page_number,wedding_photos_path(page: page_number) %> 
+			    	
+			    	</li>
+			    	<%end%>
+			    </li>
+			    
+				<%if @page < @last_page%>
+	  	  		<li>
+	  	  			<%= link_to wedding_photos_path(page:(@page+1)) do%>
+	  	  			  Next
+	  	  			<%end%>
+	  	  		</li>
+	  	  	   <%end%>
+			    
+	      </ul>
+       </nav>

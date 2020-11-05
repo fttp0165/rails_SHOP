@@ -3,9 +3,9 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 body{
-            background-color: #F3EAE1;
-            margin: 0;
-            padding: 0;
+            background-color: #EADAC8; /*#F3EAE1;*/
+            margin: 0px;
+            padding: 0px;
 }
 .front_index{
     padding: 0px;
@@ -16,6 +16,11 @@ body{
     background-position: 100%;
     background-attachment: fixed;
 }
+.row{
+    margin: 0;
+  padding: 0;
+
+}
 
 .nav_head{
   margin: 0;
@@ -24,15 +29,86 @@ body{
 
 
 .index_context{
-@import url('https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap');
-  font-family: 'ZCOOL QingKe HuangYou', cursive;
+
+  /*font-family: 'ZCOOL QingKe HuangYou', cursive;*/
+  /*font-family:'DFKai-sb';*/
+  font-family: "LiGothic", "FangSong", Arial, serif;
   font-size: 30px;
+  color: #000000;
   text-align:center;
   margin-top: 150px;
 }
 .index_picture{
-   width: 300px;
-   height: 300px;
+   width: 25%;
+   height: 25%;
    margin-top: 50px;
    margin-right: 50px;
+}
+
+.flower_nav_set{
+  height:80px;
+  margin:0px
+}
+
+.flower_nav_li{
+/* font-family: 'ZCOOL QingKe HuangYou', cursive;*/
+ font-size: 40px;
+ line-height: 50px;
+ top:20px;
+ color:gray;
+}
+
+ 
+.flower_logo{
+              font-family: 'Liu Jian Mao Cao', cursive;
+              font-size:50px;
+              top:20px;
+          }
+
+.footer{
+        width: 100%;
+        height: 100px;
+        margin: 0px;
+        padding: 0px;
+        bottom: 70px;
+        background-color:#EADAC8;
+
+}
+.footer-follow-p{
+        font-size:20px;
+         margin: 0px;
+        padding: 0px;
+         width: 100%;
+   
+}
+
+.footer-follow-row{
+       
+         width: 100px;
+          margin: 0px;
+        padding: 0px;
+   
+}
+.footer-icon{
+         margin: 0px;
+        padding: 0px;
+        width: 60px;
+        height: 60px;
+        background-color: #EADAC8;
+}
+.footer-div{
+   background-color: #EADAC8;
+  top:10px;
+        margin: 0px;
+        padding: 0px;
+        width: 70px;
+}
+/*.footer-p{
+        margin: 0px;
+        padding: 0px;
+        width: 140px;
+}*/
+.MPzero{
+  margin: 0px;
+  padding: 0px;
 }

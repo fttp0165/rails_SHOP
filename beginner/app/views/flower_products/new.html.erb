@@ -1,0 +1,33 @@
+<h3>新增產品</h3>
+<%= form_for @product,method: :post do |f|%>
+<%=f.label :產品名稱 %>:
+<%=f.text_field :name%><br/>
+<%=f.label :產品敘述 %>:<br/>
+<%=f.text_area :description%><br/>
+<%=f.label :產品照片 %>:<br/>
+<%=f.text_field :image_url%><br/>
+<%=f.submit :新增產品 ,class:"btn btn-default"%>
+<%=link_to '返回',flower_products_path,class:"btn btn-default"%>
+<%end%>
+
+<%#= form_tag flower_products_path,method:"post",class:"form-inline" do%>
+
+<!-- <h3>新增產品</h3>
+ <div class="form-group">
+    <label for="exampleInputName2">產品名稱:</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="花火">
+  </div><br/><br/>
+ <div class="form-group">
+ <label for="exampleInputName2">	描述:</label>
+<textarea name="description" class="form-control" rows="3"></textarea>
+</div><br/>
+<div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">ex.jpg .png</p>
+  </div><br/>
+<button type="submit">送出</button> -->
+
+<%#=@note%>
+
+<%#end%>

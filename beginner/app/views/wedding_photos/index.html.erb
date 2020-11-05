@@ -1,0 +1,17 @@
+<%= render partial:'wedding_photos/nav'%>
+
+<%= render partial:'wedding_photos/carousel_box'%>
+ 	<div class="row masonry">
+                <% @wedding_pictures.each do |wedding_picture| %>
+                <div class="col-md-4 item">
+                <%= image_tag wedding_picture[:image_url] ,class:"IndexPicture img-responsive",alt:"Responsive image"%>
+                     	<%if @current_user %>
+                     	<%= link_to "#{button_tag '編輯', type: 'button',class:'btn btn-danger'}".html_safe,edit_wedding_photo_path(wedding_picture) %>
+                      <%= link_to "#{button_tag '刪除', type: 'button',class:'btn btn-danger'}".html_safe,wedding_photo_path(wedding_picture),method: :delete,data:{confirm: "Are you sure?"} %>
+                		<%end%>
+                </div>
+                <% end %>	
+            
+    </div>
+
+<%= render partial:'wedding_photos/footbar'%>

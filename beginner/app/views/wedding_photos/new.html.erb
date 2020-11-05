@@ -1,0 +1,9 @@
+<h3>上傳圖片</h3>
+
+<%= form_for @weddingpotho ,method: :post do |p| %>
+	<%= p.label :name,"名稱"%>
+	<%= p.text_field :name %> <br />
+	<%= p.label :image,"圖片"%> 
+	<%= p.file_field :image %> <br />
+	<%= p.submit "新增" %>
+<% end %>

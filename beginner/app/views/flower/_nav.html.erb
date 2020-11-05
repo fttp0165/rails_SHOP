@@ -1,38 +1,55 @@
-<nav class="navbar navbar-default nav_head" >
-<div class="container-fluid">
+<nav class="navbar navbar-default navbar-fixed-top">
 <div class="navbar-header">
-
  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-   <span class="sr-only">Toggle navigation</span>
-   <span class="icon-bar"></span>
-   <span class="icon-bar"></span>
-   <span class="icon-bar"></span>
+   <span class="sr-only ">Toggle navigation</span>
+   <span class="icon-bar "></span>
+   <span class="icon-bar "></span>
+   <span class="icon-bar "></span>
  </button>
 </div>
 <!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
- <ul class="nav navbar-nav">
-   <li > <%=  link_to "初心",flower_flower_path,class:"logo" %> </li>
- </ul>
-     <!-- <form class="navbar-form navbar-left">
-       <div class="form-group">
-         <input type="text" class="form-control" placeholder="Search">
-       </div>
-       <button type="submit" class="btn btn-default">Search</button>
-     </form> -->
- <ul class="nav navbar-nav navbar-right">
-   <li><a <%= link_to '關於',flower_flower_path%></a></li>
-  <li><a <%= link_to '產品',flower_flower_path%></a></li>
-  <li><a <%= link_to '聯絡我',flower_flower_path%></a></li>
-   <li class="dropdown">
-     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">作品 <span class="caret"></span></a>
-     <ul class="dropdown-menu">
-       <li><a <%= link_to 'Flower Store',flower_flower_path%></a></li>
-       <li role="separator" class="divider"></li>
-       <li><a href="#"></a></li>
-     </ul>
-   </li>
- </ul>
-</div><!-- /.navbar-collapse -->
-</div><!-- /.container-fluid -->
+ 
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+           <ul class="nav navbar-nav flower_nav_set">
+             <li > <%=  link_to "初心",flower_path,class:"flower_logo" %> </li>
+           </ul>
+
+           <ul class="nav navbar-nav navbar-right ">
+                  <!-- 搜尋列 -->
+                  <form class="navbar-form col-lg-12"  role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control " placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                  </form> 
+                   <!-- 導覽至關於店家資訊 -->
+                  <li class="flower_nav_li "> <%= link_to '關於',flower_path%></li> 
+                      <!-- 導覽聯絡資訊 -->
+                  <li class="flower_nav_li "> <%= link_to '聯絡我',flower_path%></li>
+                      <!-- 下拉式選單 -->
+                  <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle flower_nav_li" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 作品 <span class="caret"></span></a>
+
+                         <ul class="dropdown-menu list-group"  >
+                            <li class="flower_nav_li list-group-item"><%= link_to '捧花',flower_products_path
+       %></li>
+                            <li class="flower_nav_li list-group-item "><%= link_to '配件',flower_path %></li>
+                         </ul>
+                  </li>
+
+                  <li class="dropdown ">
+                      <a href="#" class="dropdown-toggle flower_nav_li glyphicon glyphicon-align-justify" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+                      <!-- 下拉顯示登入或登出 -->
+                      <ul class="dropdown-menu list-group"  >
+                            <%if ! current_user%>
+                              <li class="flower_nav_li list-group-item"><%= link_to '登入',flower_user_log_in_path ,class:"glyphicon glyphicon-log-in"%></li>
+                            <%else%>
+                               <li class="  flower_nav_li  list-group-item"><%= link_to '登出',flower_user_log_out_path,class:"glyphicon glyphicon-log-out" %></li>
+                            <%end%>
+                      </ul>
+                  </li>
+           </ul>
+
+      </div><!-- /.navbar-collapse -->
+
 </nav>

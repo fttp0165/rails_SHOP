@@ -1,0 +1,39 @@
+
+<h3>編輯產品</h3>
+<%= form_for @product ,method: :put,class:"form-inline"  do|f|%>
+<%=	f.label :產品名稱%>:
+<%= f.text_field :name%><br/>
+<%=	f.label :產品名稱%>:<br/>
+<%= f.text_area :description%><br/>
+<%=	f.label :圖片%>:<br/>
+<%= f.file_field :image_url  %><br/>
+<%= f.submit :更新 ,class:"btn btn-default"%>
+<%=link_to '返回',flower_products_path,class:"btn btn-default"%>
+
+<%end%>
+
+
+
+
+
+<%#= form_tag("/flower_products/#{@product.id}",method:"patch",class:"form-inline" )do%>
+<!-- <h3>編輯產品</h3>
+ <div class="form-group">
+    <label for="exampleInputName2">產品名稱:</label>
+    <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="花火" value="<%#= @product.name %>">
+  </div><br/><br/>
+ <div class="form-group">
+ <label for="exampleInputName2">	描述:</label>
+<textarea name="description" class="form-control" rows="3"> <%= @product.description %></textarea>
+
+</div><br/>
+<div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <label for="exampleInputName2"> 檔案路徑:<%= @product.image_url %></label>
+    <p class="help-block">ex.jpg .png</p>
+  </div><br/>
+<button type="submit">送出</button>
+	<%#=link_to '返回',flower_products_path,class:"btn btn-default"%>
+ -->
+<%#end%>

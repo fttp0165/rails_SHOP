@@ -1,0 +1,12 @@
+		 <%= image_tag product[:image_url],class:" img-responsive  front_index"%>
+	      <div class="caption">
+			<h3><%=	 product[:id]%></h3>
+				 <h3><%=  product[:name]%></h3>
+					 <p><%= product[:description] %></p>
+					 <%if current_user %>
+					<div> 
+						<%=link_to "編輯",edit_flower_product_path(product),class:"btn btn-primary"%>
+					 	<%=link_to "刪除",flower_product_path(product),method: :delete,class:"btn btn-danger",data:{confirm:"確定要刪除嗎?"}%>
+					</div>
+					<%end%>
+			  </div>

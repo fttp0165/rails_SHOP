@@ -1,0 +1,2 @@
+class WeddingPhoto < ApplicationRecord
+end

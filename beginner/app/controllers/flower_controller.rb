@@ -1,5 +1,6 @@
 class FlowerController < ApplicationController
 
-   def flower
+   def index
+   	
    end
 end
