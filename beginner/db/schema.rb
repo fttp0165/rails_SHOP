@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_055724) do
+ActiveRecord::Schema.define(version: 2020_11_08_055456) do
+
+  create_table "flower_categories", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "flower_products", force: :cascade do |t|
     t.string "name"
@@ -19,6 +27,18 @@ ActiveRecord::Schema.define(version: 2020_11_03_055724) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "price"
+    t.integer "flower_sub_category_id"
+    t.index ["flower_sub_category_id"], name: "index_flower_products_on_flower_sub_category_id"
+  end
+
+  create_table "flower_sub_categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "description"
+    t.string "image_url"
+    t.integer "flower_category_id"
+    t.index ["flower_category_id"], name: "index_flower_sub_categories_on_flower_category_id"
   end
 
   create_table "flower_users", force: :cascade do |t|

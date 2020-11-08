@@ -4,8 +4,8 @@
 
 body{
             background-color: #EADAC8; /*#F3EAE1;*/
-            margin: 0px;
-            padding: 0px;
+            margin: 0;
+            padding: 0;
 }
 .front_index{
     padding: 0px;
@@ -52,17 +52,23 @@ body{
 
 .flower_nav_li{
 /* font-family: 'ZCOOL QingKe HuangYou', cursive;*/
- font-size: 40px;
- line-height: 50px;
- top:20px;
+ font-size:40px;
+ line-height: 10px;
+
  color:gray;
+ margin: 0;
+padding: 0;
 }
 
  
 .flower_logo{
               font-family: 'Liu Jian Mao Cao', cursive;
-              font-size:50px;
-              top:20px;
+              font-size:40px;
+              height: 40px;
+               margin: 0;
+               line-height: 40px;
+padding: 0;
+
           }
 
 .footer{
@@ -111,4 +117,8 @@ body{
 .MPzero{
   margin: 0px;
   padding: 0px;
+}
+
+.flower_index{
+    background-color: #EADAC8;
 }

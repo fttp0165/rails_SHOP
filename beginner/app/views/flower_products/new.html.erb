@@ -4,12 +4,40 @@
 <%=f.text_field :name%><br/>
 <%=f.label :產品敘述 %>:<br/>
 <%=f.text_area :description%><br/>
-<%=f.label :產品照片 %>:<br/>
-<%=f.text_field :image_url%><br/>
+
+<%=f.label :image ,"產品照片" %>:<br/>
+
+<%=image_tag "flower_picture/flower_pot.png",size:'200x100',id:"currentpicture"%><br/>
+
+<%=f.file_field :image%><br/><br/>
+
+<%=f.label :flower_sub_category_id ,'類別' %>:
+<%=f.select("flower_sub_category_id",FlowerSubCategory.all.collect{|s| [s.name_with_category,s.id]},{include_blank:'請選擇'})%>  <br/>
 <%=f.submit :新增產品 ,class:"btn btn-default"%>
 <%=link_to '返回',flower_products_path,class:"btn btn-default"%>
 <%end%>
 
+
+<script type="text/javascript">
+	
+	$(function(){
+		$("#flower_product_image").change(function(){
+			readURL(this,"currentpicture");
+		});
+		function readURL(input,image_tag_id){
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload=function(e){
+				$('#'+image_tag_id).attr('src',e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	});
+
+
+</script>
 <%#= form_tag flower_products_path,method:"post",class:"form-inline" do%>
 
 <!-- <h3>新增產品</h3>

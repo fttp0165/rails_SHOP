@@ -1,55 +1,53 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-<div class="navbar-header">
- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-   <span class="sr-only ">Toggle navigation</span>
-   <span class="icon-bar "></span>
-   <span class="icon-bar "></span>
-   <span class="icon-bar "></span>
- </button>
-</div>
-<!-- Collect the nav links, forms, and other content for toggling -->
- 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-           <ul class="nav navbar-nav flower_nav_set">
-             <li > <%=  link_to "初心",flower_path,class:"flower_logo" %> </li>
-           </ul>
+<nav class="navbar navbar-default  navbar-fixed-top " style="margin: 0;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" >
+      <button data-toggle="collapse-side" data-target-sidebar=".side-collapse-right" data-target-content=".side-collapse-container-right" type="button" class="navbar-toggle pull-rihgt" >
+        
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+   
+      </button>
+      <%=  link_to "初心",flower_path,class:"flower_logo navbar-nav flower_nav_set navbar-brand" %> 
+    </div>
 
-           <ul class="nav navbar-nav navbar-right ">
-                  <!-- 搜尋列 -->
-                  <form class="navbar-form col-lg-12"  role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control " placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                  </form> 
-                   <!-- 導覽至關於店家資訊 -->
-                  <li class="flower_nav_li "> <%= link_to '關於',flower_path%></li> 
-                      <!-- 導覽聯絡資訊 -->
-                  <li class="flower_nav_li "> <%= link_to '聯絡我',flower_path%></li>
-                      <!-- 下拉式選單 -->
-                  <li class="dropdown ">
-                    <a href="#" class="dropdown-toggle flower_nav_li" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> 作品 <span class="caret"></span></a>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class=" navbar-collapse side-collapse-right in" id="bs-example-navbar-collapse-1" style="text-align: center;">
+    
+      <ul class="nav navbar-nav navbar-right">
 
-                         <ul class="dropdown-menu list-group"  >
-                            <li class="flower_nav_li list-group-item"><%= link_to '捧花',flower_products_path
-       %></li>
-                            <li class="flower_nav_li list-group-item "><%= link_to '配件',flower_path %></li>
-                         </ul>
-                  </li>
+         <form class="navbar-form navbar-left">
+            <div class="row">
+                <div class="form-group col-xs-6">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <div class="form-group col-xs-6">
+                <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+         </form>
 
-                  <li class="dropdown ">
-                      <a href="#" class="dropdown-toggle flower_nav_li glyphicon glyphicon-align-justify" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
-                      <!-- 下拉顯示登入或登出 -->
-                      <ul class="dropdown-menu list-group"  >
-                            <%if ! current_user%>
-                              <li class="flower_nav_li list-group-item"><%= link_to '登入',flower_user_log_in_path ,class:"glyphicon glyphicon-log-in"%></li>
-                            <%else%>
-                               <li class="  flower_nav_li  list-group-item"><%= link_to '登出',flower_user_log_out_path,class:"glyphicon glyphicon-log-out" %></li>
-                            <%end%>
-                      </ul>
-                  </li>
-           </ul>
+        <li><%= link_to '關於初心',flower_path%></li>
+        <li><%= link_to '作品',flower_products_path%></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle glyphicon glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.try(:name) %><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+             <%if ! current_user%>
 
-      </div><!-- /.navbar-collapse -->
-
+                 <li><%= link_to ' 登入',flower_user_log_in_path ,class:"glyphicon glyphicon-log-in"%></li>
+             <%else%>
+             <li><%= link_to ' 新增產品',new_flower_product_path ,class:"glyphicon glyphicon-log-in"%></li>
+                 <li><%= link_to ' 登出',flower_user_log_out_path ,class:"glyphicon glyphicon-log-in"%></li>
+              <%end%>
+          </ul>
+        </li>
+      </ul>
+    
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
 </nav>
+
+
+

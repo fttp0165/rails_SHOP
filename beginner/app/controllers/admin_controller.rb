@@ -7,7 +7,6 @@ class AdminController < ApplicationController
 			@current_user=User.find_by_id(current_user_id)
 			@current_user_name=@current_user.name
 		end
-
 	end
 
 	def logout

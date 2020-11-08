@@ -1,4 +1,5 @@
 class FlowerProductsController < ApplicationController
+	before_action	:redirect_to_index_if_not_login, except:[:index,:show]
 
 	PRODUCT_COUNT=100
 	LIMIT_PRODUCT_NUMBER=20
@@ -21,6 +22,7 @@ class FlowerProductsController < ApplicationController
 				@page=1
 			end
 
+			@flower_category=FlowerCategory.all
 			# (1..PRODUCT_COUNT).each do |index|
 			# 	bundle_flower={
 		 #   			id:index,
@@ -43,13 +45,18 @@ class FlowerProductsController < ApplicationController
 	end
 
 	def create
-	flower_product=FlowerProduct.create(flower_product_permit) 
+
+	image=params[:flower_product][:image]
+	if image
+		image_url=save_file(image)
+    end
+	flower_product=FlowerProduct.create(flower_product_permit.merge({image_url:image_url})) 
 	#flower_product_permit#取代以下{
 		# name: params[:name],
 		# description: params[:description],
 		# image_url: params[:imsge_url]#{}"flower_picture/DSC_0083.JPG"}
 
-	flash[:name]=flower_product.id
+	flash[:notice]="建立成功"
 	redirect_to action: :new
 	end
 
@@ -65,7 +72,15 @@ class FlowerProductsController < ApplicationController
 	def update
 		
 		flower_product=FlowerProduct.find(params[:id])
-		flower_product.update(flower_product_permit)
+
+		image=params[:flower_product][:image]
+		if image
+			image_url=save_file(image)
+			flower_product.update(flower_product_permit.merge({image_url:image_url}))
+		else
+			flower_product.update(flower_product_permit)
+		end
+		flash[:notice]="更新成功"
 		redirect_to action: :edit
 	end
 
@@ -82,7 +97,37 @@ class FlowerProductsController < ApplicationController
 	end
 
 	def flower_product_permit
-		params.require(:flower_product).permit([:name,:description,:image_url])
+		params.require(:flower_product).permit([:name,:description,:flower_sub_category_id])
 	end
+
+	def redirect_to_index_if_login
+		if current_user
+			flash[:notice]="已經登入了"
+			redirect_to action: :index ,controller: :flower_products
+			return
+		end
+	end
+
+
+
+	def redirect_to_index_if_not_login
+		if !current_user
+			flash[:notice]="尚未登入"
+			redirect_to action: :index ,controller: :flower_products
+			return
+		end
+	end
+
+	def save_file(newFile)
+		dir_url=Rails.root.join('images','upload/flower_products')
+		FileUtils.mkdir_p(dir_url) unless File.directory?(dir_url)
+		file_url=dir_url+newFile.original_filename
+		File.open(file_url,'w+b') do |file|
+			file.write(newFile.read)
+		end
+
+		return '/upload/flower_products/'+newFile.original_filename
+	end
+
 
 end

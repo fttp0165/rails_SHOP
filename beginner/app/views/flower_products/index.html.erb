@@ -4,31 +4,27 @@
 <div class="row">
 	
 	<%= render partial:'flower/nav'%>
-	<div  class="jumbotron" style="height: 100px;width:100%;background-color: #EADAC8;">
-	</div>
-	<div  class="jumbotron" style="height: 100px;width:100%;background-color: #EADAC8;">
-					
+
+	<div  class="jumbotron" style="background-color: #EADAC8;height:5px; ">
 	</div>
 	<div  class="jumbotron" style="background-color: #EADAC8;">
 		<div class="row">
-			<div class="col-xs-6 col-md-3" >
-				<ul class="list-group " style="background-color: #EADAC8;">
-					<li class="list-group-item ">
-						捧花
-						<ul class="list-group " >
-							<li class="list-group-item ">圓形</li>
-							<li class="list-group-item ">扇形</li>
-							<li class="list-group-item ">客訂</li>
-						</ul>	
-					</li>
-					<li class="list-group-item">
-						配件
-						<ul class="list-group">
-							<li class="list-group-item">胸花</li>
-							<li class="list-group-item">手腕花</li>
-						</ul>	
-					</li>
-				</ul>
+			<div class="col-xs-12 col-md-3" >
+
+					<% @flower_category.each do |category,| %>
+					<ul class="list-group " style="background-color: #EADAC8;">
+						
+						<li class="list-group-item col-xs-12">
+							<%= category.try(:name)%>
+								<ul class="list-group col-xs-12" >
+								<% category.flower_sub_category.each do |sub_category| %>
+								<li class="list-group-item col-xs-12"><%= sub_category.try(:name)%></li>
+								<%end%>
+								</ul>	
+						</li>
+					
+				   </ul>
+				<%end%>
 					
 			</div>
 			<div class="col-xs-12 col-md-9">
