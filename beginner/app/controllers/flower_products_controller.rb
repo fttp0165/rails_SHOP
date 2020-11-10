@@ -119,15 +119,15 @@ class FlowerProductsController < ApplicationController
 	end
 
 	def save_file(newFile)
-		dir_url=Rails.root.join('images','upload/flower_products')
+		dir_url=Rails.root.join('app/assets/','images/upload/flower_products')
 		FileUtils.mkdir_p(dir_url) unless File.directory?(dir_url)
 		file_url=dir_url+newFile.original_filename
 		File.open(file_url,'w+b') do |file|
 			file.write(newFile.read)
 		end
-
-		return '/upload/flower_products/'+newFile.original_filename
+		return '/images/upload/flower_products/'+newFile.original_filename
 	end
+
 
 
 end

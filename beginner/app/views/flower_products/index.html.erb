@@ -9,25 +9,32 @@
 	</div>
 	<div  class="jumbotron" style="background-color: #EADAC8;">
 		<div class="row">
-			<div class="col-xs-12 col-md-3" >
+			<div class="col-xs-12 col-md-2" >
 
-					<% @flower_category.each do |category,| %>
-					<ul class="list-group " style="background-color: #EADAC8;">
-						
-						<li class="list-group-item col-xs-12">
+					<% @flower_category.each do |category| %>
+					<ul class="list-group " >
+						<li class="list-group-item col-xs-12" style="background-color:#fffaf0;font-size: 18px;">
+							<%= link_to  flower_products_category_path(category),style:"color:#000000;" do%>
 							<%= category.try(:name)%>
+							<%end%>
 								<ul class="list-group col-xs-12" >
 								<% category.flower_sub_category.each do |sub_category| %>
-								<li class="list-group-item col-xs-12"><%= sub_category.try(:name)%></li>
+								
+										<li class="list-group-item col-xs-12 glyphicon glyphicon-gift" style="background-color: #fffaf0; text-align:center; font-size: 18px; ">
+											<%= link_to flower_products_subcategory_path(category_id: category.id,subcategories_id: sub_category.id),style:"color:#000000;" do%>
+											<%= sub_category.try(:name)%>
+											<%end%>
+										</li>
 								<%end%>
 								</ul>	
 						</li>
-					
+				
 				   </ul>
+
 				<%end%>
 					
 			</div>
-			<div class="col-xs-12 col-md-9">
+			<div class="col-xs-12 col-md-10">
 				<div class="row">
 						<% @bundle_flower.each do |product|%>
 								<div class="col-xs-12 col-md-3">

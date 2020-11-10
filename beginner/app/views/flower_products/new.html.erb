@@ -7,7 +7,7 @@
 
 <%=f.label :image ,"產品照片" %>:<br/>
 
-<%=image_tag "flower_picture/flower_pot.png",size:'200x100',id:"currentpicture"%><br/>
+<%=image_tag @product_url || "flower_picture/flower_pot.png",size:'200x100',id:"currentpicture"%><br/>
 
 <%=f.file_field :image%><br/><br/>
 

@@ -13,6 +13,8 @@
 
 <%=f.label :flower_sub_category_id ,'類別' %>:
 <%=f.select("flower_sub_category_id",FlowerSubCategory.all.collect{|s| [s.name_with_category,s.id]},{include_blank:'請選擇'})%>  <br/>
+<%=@vi%>
+<br/>
 <%= f.submit :更新 ,class:"btn btn-default"%>
 <%=link_to '返回',flower_products_path,class:"btn btn-default"%>
 

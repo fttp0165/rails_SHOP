@@ -13,4 +13,18 @@ Rails.application.routes.draw do
       get "flower_user/log_in",to: "flower_user#log_in"
       post "flower_user/create_session",to: "flower_user#create_session"
       get "flower_user/log_out",to: "flower_user#log_out"
+
+      resources :categories ,param: :category_id ,only:[]do
+      	member do
+      		get :flower_products
+      		 resources :subcategories, param: :subcategories_id ,only:[]do
+      	        member do
+      		        get :flower_products
+      	        end
+             end
+         end
+       end 
+
+     
+
 end
