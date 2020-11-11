@@ -16,7 +16,7 @@ class FlowerUserController < ApplicationController
 
 	end
 
-
+	private
 	def create_session
 		
 		user=FlowerUser.find_by(email: params[:email],password: params[:password])

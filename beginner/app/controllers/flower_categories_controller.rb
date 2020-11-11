@@ -1,2 +1,3 @@
 class FlowerCategoriesController < ApplicationController
+	
 end

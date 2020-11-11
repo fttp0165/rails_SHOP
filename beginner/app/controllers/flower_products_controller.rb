@@ -1,28 +1,27 @@
 class FlowerProductsController < ApplicationController
 	before_action	:redirect_to_index_if_not_login, except:[:index,:show]
-
-	PRODUCT_COUNT=100
+	before_action 	:get_page
+	before_action 	:get_pageation
+	before_action 	:get_all_category,only:[:index,:flower_products]
+	#PRODUCT_COUNT=100
 	LIMIT_PRODUCT_NUMBER=20
 
 
 	def index
-			@bundle_flower = []
-			@first_page=1
-			
-			@bundle_flower =FlowerProduct.all 
-			@last_page=(@bundle_flower.count/LIMIT_PRODUCT_NUMBER)
-			if (@bundle_flower.count % LIMIT_PRODUCT_NUMBER)>1
-				@last_page += 1
-			end
-			
+			# @bundle_flower = []
+			# @first_page=1
+			# @bundle_flower =FlowerProduct.all 
+			# @last_page=(@bundle_flower.count/LIMIT_PRODUCT_NUMBER)
+			# if (@bundle_flower.count % LIMIT_PRODUCT_NUMBER)>1
+			# 	@last_page += 1
+			# end
+			# if params[:page]
+			# 	@page=params[:page].to_i
+			# else
+			# 	@page=1
+			# end
 
-			if params[:page]
-				@page=params[:page].to_i
-			else
-				@page=1
-			end
-
-			@flower_category=FlowerCategory.all
+			
 			# (1..PRODUCT_COUNT).each do |index|
 			# 	bundle_flower={
 		 #   			id:index,
@@ -33,9 +32,9 @@ class FlowerProductsController < ApplicationController
 			#<< bundle_flower
 		
 			# @bundle_flower=@bundle_flower[(@page-1)*LIMIT_PRODUCT_NUMBER,LIMIT_PRODUCT_NUMBER]  
-			@bundle_flower=@bundle_flower.offset((@page-1)*LIMIT_PRODUCT_NUMBER).limit(LIMIT_PRODUCT_NUMBER)
+		
 			#採用位移讀取資料庫比原先方法（讀取整個table 取出所需部份 200筆資料快2.3msec）好
-			
+			##@bundle_flower=@bundle_flower.offset((@page-1)*LIMIT_PRODUCT_NUMBER).limit(LIMIT_PRODUCT_NUMBER)
 	end
 
 
@@ -72,7 +71,6 @@ class FlowerProductsController < ApplicationController
 	def update
 		
 		flower_product=FlowerProduct.find(params[:id])
-
 		image=params[:flower_product][:image]
 		if image
 			image_url=save_file(image)
@@ -95,7 +93,7 @@ class FlowerProductsController < ApplicationController
 		# 	end
 		# end
 	end
-
+	private
 	def flower_product_permit
 		params.require(:flower_product).permit([:name,:description,:flower_sub_category_id])
 	end
@@ -127,6 +125,37 @@ class FlowerProductsController < ApplicationController
 		end
 		return 'upload/flower_products/'+newFile.original_filename
 	end
+
+	def get_current_page
+			if params[:page]
+				@page=params[:page].to_i
+			else
+				@page=1
+			end
+	end
+
+	def get_products
+		@bundle_flower =FlowerProduct.all 
+	end
+	def get_pageation
+			@first_page=1
+			count=@bundle_flower.count
+			@last_page=(count/LIMIT_PRODUCT_NUMBER)
+			if (count % LIMIT_PRODUCT_NUMBER)>1
+				@last_page += 1
+			end
+			@bundle_flower=@bundle_flower.offset((@page-1)*LIMIT_PRODUCT_NUMBER).limit(LIMIT_PRODUCT_NUMBER)
+	end
+	def get_all_category
+		@flower_category=FlowerCategory.all
+	end
+	def get_page
+		get_current_page
+		get_products
+		get_all_category
+	end
+
+	
 
 
 
