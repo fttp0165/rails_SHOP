@@ -125,7 +125,7 @@ class FlowerProductsController < ApplicationController
 		File.open(file_url,'w+b') do |file|
 			file.write(newFile.read)
 		end
-		return '/images/upload/flower_products/'+newFile.original_filename
+		return 'upload/flower_products/'+newFile.original_filename
 	end
 
 

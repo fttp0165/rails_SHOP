@@ -8,7 +8,7 @@
 
 
 <%=	f.label :image,'圖片'%>:<br/>
-<%=image_tag @product.image_url,size:'200x100',id:"currentpicture"%><br/>
+<%=image_tag @product.image_url || "flower_picture/flower_pot.png",size:'200x100',id:"currentpicture"%><br/>
 <%= f.file_field :image, accept: "image/git,image/jpeg,image/png" %><br/>
 
 <%=f.label :flower_sub_category_id ,'類別' %>:
