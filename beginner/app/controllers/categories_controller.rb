@@ -20,7 +20,7 @@ class CategoriesController < FlowerProductsController
 			# @bundle_flower=@bundle_flower.offset((@page-1)*LIMIT_PRODUCT_NUMBER).limit(LIMIT_PRODUCT_NUMBER)
 	end
 
-	private
+	# private
 	def get_products
 		@bundle_flower=@category.flower_products
 	end

@@ -43,6 +43,10 @@ class FlowerProductsController < ApplicationController
 		@product=FlowerProduct.new
 	end
 
+	def show
+	@product=FlowerProduct.find_by_id(params[:id])
+	end
+
 	def create
 
 	image=params[:flower_product][:image]
@@ -141,7 +145,7 @@ class FlowerProductsController < ApplicationController
 			@first_page=1
 			count=@bundle_flower.count
 			@last_page=(count/LIMIT_PRODUCT_NUMBER)
-			if (count % LIMIT_PRODUCT_NUMBER)>1
+			if (count % LIMIT_PRODUCT_NUMBER)
 				@last_page += 1
 			end
 			@bundle_flower=@bundle_flower.offset((@page-1)*LIMIT_PRODUCT_NUMBER).limit(LIMIT_PRODUCT_NUMBER)

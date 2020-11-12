@@ -1,3 +1,4 @@
+<%= render partial:'flower/nav'%>
 <h3>新增產品</h3>
 <%= form_for @product,method: :post do |f|%>
 <%=f.label :產品名稱 %>:
@@ -16,7 +17,7 @@
 <%=f.submit :新增產品 ,class:"btn btn-default"%>
 <%=link_to '返回',flower_products_path,class:"btn btn-default"%>
 <%end%>
-
+    <%= render partial:'flower/footbar'%>
 
 <script type="text/javascript">
 	

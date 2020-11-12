@@ -1,3 +1,0 @@
-class FlowerCategoriesController < ApplicationController
-	
-end

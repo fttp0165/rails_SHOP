@@ -4,36 +4,11 @@
 <div class="row">
 	
 	<%= render partial:'flower/nav'%>
-
 	<div  class="jumbotron" style="background-color: #EADAC8;height:5px; ">
 	</div>
-	<div  class="jumbotron" style="background-color: #EADAC8;">
-		<div class="row">
-			<div class="col-xs-12 col-md-2" >
+	<%= render "flower_products/componer/side_bar", flower_category: @flower_category %>
 
-					<% @flower_category.each do |category| %>
-					<ul class="list-group " >
-						<li class="list-group-item col-xs-12" style="background-color:#fffaf0;font-size: 18px;">
-							<%= link_to  flower_products_category_path(category),style:"color:#000000;" do%>
-							<%= category.try(:name)%>
-							<%end%>
-								<ul class="list-group col-xs-12" >
-								<% category.flower_sub_category.each do |sub_category| %>
-								
-										<li class="list-group-item col-xs-12 glyphicon glyphicon-gift" style="background-color: #fffaf0; text-align:center; font-size: 18px; ">
-											<%= link_to flower_products_subcategory_path(category_id: category.id,subcategories_id: sub_category.id),style:"color:#000000;" do%>
-											<%= sub_category.try(:name)%>
-											<%end%>
-										</li>
-								<%end%>
-								</ul>	
-						</li>
-				
-				   </ul>
 
-				<%end%>
-					
-			</div>
 			<div class="col-xs-12 col-md-10">
 				<div class="row">
 						<% @bundle_flower.each do |product|%>
@@ -44,32 +19,8 @@
 								</div>
 						 <%end%>
 					</div>
-						<div class="row">
-							<div class="col-xs-12">
-									<nav aria-label="Page navigation">
-									  <ul class="pagination">
-									  	<%if @page > 1%>
-									    <li>
-									      <%=link_to flower_products_path(page:(@page-1)) do%>
-									        <span aria-hidden="true">&laquo;</span>
-									      <%end%>
-									    </li>
-									    <%end%>
-									    <% (@first_page..@last_page).each do |page_number|%>
-									    <li><%=link_to page_number,flower_products_path(page: page_number)%></a></li>
-									    <%end%>
-									    <%if @page < @last_page%>
-									    <li>
-									    	  <%=link_to flower_products_path(page:(@page+1)) do%>
-									       			<span aria-hidden="true">&raquo;</span>
-									      	<%end%>
-									    </li>
-									    <%end%>
-
-									  </ul>
-								</nav>	
-							</div>
-						</div>	
+						
+					<%= render "flower_products/componer/pagination", page: @page,first_page: @first_page,last_page: @last_page,url_coustom_helor_name: :flower_products_path %>
 
 			    </div>
 			</div>
