@@ -10,7 +10,6 @@ class FlowerUserController < ApplicationController
 	def log_out
 		session[:current_user_id]=nil
 		flash[:notice]="登出成功"
-		
 		redirect_to action: :index ,controller: :flower_products
 		return
 

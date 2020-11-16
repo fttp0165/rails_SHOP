@@ -46,7 +46,7 @@ subcategory=FlowerSubCategory.all[1]
 					bundle_flower={
 		   			name: "花火",
 		   			description: "玫瑰美式捧花",
-		   			image_url: "flower_picture/DSC_0083.JPG",
+		   			# image_url: "flower_picture/DSC_0083.JPG",
 		   			flower_sub_category: subcategory
    					}
    				FlowerProduct.create(bundle_flower)

@@ -1,6 +1,6 @@
 		
-		<%= link_to flower_product_path(product) do%>
-		 <%= image_tag (product[:image_url] || "flower_picture/flower_pot.png"),class:" img-responsive  front_index"%>
+		<%= link_to flower_product_path(product)  do %>
+		 <%=image_tag (product.image_url.url || "flower_picture/flower_pot.png"),class:" img-responsive" %> 
 		 <%end%>
 
 	      <div class="caption">

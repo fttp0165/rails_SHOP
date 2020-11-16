@@ -25,6 +25,7 @@ class CategoriesController < FlowerProductsController
 		@bundle_flower=@category.flower_products
 	end
 	def get_category
+		
 		@category=FlowerCategory.find_by_id(params[:category_id])
 	end
 	

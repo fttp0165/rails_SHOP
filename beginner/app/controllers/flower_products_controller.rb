@@ -1,5 +1,5 @@
 class FlowerProductsController < ApplicationController
-	before_action	:redirect_to_index_if_not_login, except:[:index,:show]
+	before_action	:redirect_to_index_if_not_login, except:[:index,:show,:flower_products]
 	before_action 	:get_page
 	before_action 	:get_pageation
 	before_action 	:get_all_category,only:[:index,:flower_products]
@@ -140,6 +140,7 @@ class FlowerProductsController < ApplicationController
 
 	def get_products
 		@bundle_flower =FlowerProduct.all 
+		
 	end
 	def get_pageation
 			@first_page=1
