@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get "admin/logout",to: "admin#logout"
       resources :flower_products
       resources :flower_categories
+      resources :cart_items
 
       get "flower_user/log_in",to: "flower_user#log_in"
       post "flower_user/create_session",to: "flower_user#create_session"

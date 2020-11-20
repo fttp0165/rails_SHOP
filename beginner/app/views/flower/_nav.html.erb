@@ -1,53 +1,50 @@
 <nav class="navbar navbar-default  navbar-fixed-top " style="margin: 0; ">
-  <div class="container-fluid" >
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header" >
-      <button data-toggle="collapse-side" data-target-sidebar=".side-collapse-right" data-target-content=".side-collapse-container-right" type="button" class="navbar-toggle pull-rihgt" >
-        
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-   
-      </button>
-      <%=  link_to "初心",flower_path,class:"flower_logo navbar-nav flower_nav_set navbar-brand" %> 
-    </div>
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button data-toggle="collapse-side" data-target-sidebar=".side-collapse-right" data-target-content=".side-collapse-container-right" type="button" class="navbar-toggle pull-rihgt">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class=" navbar-collapse side-collapse-right in" id="bs-example-navbar-collapse-1" style="text-align: center;">
-    
-      <ul class="nav navbar-nav navbar-right">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-         <form class="navbar-form navbar-left">
-            <div class="row">
-                <div class="form-group col-xs-6">
-                  <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <div class="form-group col-xs-6">
-                <button type="submit" class="btn btn-default">Submit</button>
-                </div>
-            </div>
-         </form>
+            </button>
+            <%=  link_to "初心",flower_path,class:"flower_logo navbar-nav flower_nav_set navbar-brand" %>
+        </div>
 
-        <li><%= link_to '關於初心',flower_path%></li>
-        <li><%= link_to '作品',flower_products_path%></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle glyphicon glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.try(:name) %><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-             <%if ! current_user%>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class=" navbar-collapse side-collapse-right in" id="bs-example-navbar-collapse-1" style="text-align: center;">
 
-                 <li><%= link_to ' 登入',flower_user_log_in_path ,class:"glyphicon glyphicon-log-in"%></li>
-             <%else%>
-             <li><%= link_to ' 新增產品',new_flower_product_path ,class:"glyphicon glyphicon-log-in"%></li>
-                 <li><%= link_to ' 登出',flower_user_log_out_path ,class:"glyphicon glyphicon-log-in"%></li>
-              <%end%>
-          </ul>
-        </li>
-      </ul>
-    
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <form class="navbar-form navbar-left">
+                    <div class="row">
+                        <div class="form-group col-xs-6">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+                <li><%= link_to '關於初心',flower_path%></li>
+                <li><%= link_to '作品',flower_products_path%></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle glyphicon glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.try(:name) %><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <%if ! current_user%>
+
+                        <li><%= link_to ' 登入',flower_user_log_in_path ,class:"glyphicon glyphicon-log-in"%></li>
+                        <%else%>
+                        <li><%= link_to ' 新增產品',new_flower_product_path ,class:"glyphicon glyphicon-log-in"%></li>
+                        <li><%= link_to ' 登出',flower_user_log_out_path ,class:"glyphicon glyphicon-log-in"%></li>
+                        <%end%>
+                    </ul>
+                </li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
 </nav>
-
-
-

@@ -1,4 +1,4 @@
-class FlowerController < FlowerProductsController
+class FlowerController < ApplicationController
 
    def index
    	

@@ -15,7 +15,7 @@ class FlowerUserController < ApplicationController
 
 	end
 
-	private
+	# private
 	def create_session
 		
 		user=FlowerUser.find_by(email: params[:email],password: params[:password])
@@ -29,7 +29,7 @@ class FlowerUserController < ApplicationController
 		redirect_to action: :log_in
 		#redirect_to action: :new
 	end
-
+	private
 	def redirect_to_index_if_login
 		if current_user
 			flash[:notice]="已經登入了"

@@ -12,8 +12,8 @@ default: &default
   #===mysql2
   # encoding: utf8
   # database: my_db_name
-  username: benny
-  password: 'Witness--08118'
+  username: root
+  password: 'gecko520'
   # host: 127.0.0.1
   # port: 3306
   # flags:
