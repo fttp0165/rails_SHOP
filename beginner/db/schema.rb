@@ -59,18 +59,6 @@ ActiveRecord::Schema.define(version: 2020_11_15_092447) do
     t.index ["flower_category_id"], name: "index_flower_sub_categories_on_flower_category_id"
   end
 
-  create_table "flower_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password"
-    t.string "image_url"
-    t.string "phone"
-    t.string "address"
-    t.boolean "is_admin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "password"
