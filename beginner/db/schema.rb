@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_15_092447) do
+ActiveRecord::Schema.define(version: 2020_11_25_120207) do
 
   create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "flower_product_id"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2020_11_15_092447) do
   end
 
   create_table "carts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "flower_user_id"
+    t.bigint "user_id"
     t.integer "cart_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["flower_user_id"], name: "index_carts_on_flower_user_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "flower_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,17 +55,20 @@ ActiveRecord::Schema.define(version: 2020_11_15_092447) do
     t.string "name"
     t.string "description"
     t.string "image_url"
-    t.integer "flower_category_id"
+    t.bigint "flower_category_id"
     t.index ["flower_category_id"], name: "index_flower_sub_categories_on_flower_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.string "password"
-    t.string "email"
-    t.boolean "is_admin"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "wedding_photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
