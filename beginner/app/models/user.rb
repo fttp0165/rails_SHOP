@@ -7,6 +7,13 @@ class User < ApplicationRecord
          has_many :orders
          after_create :create_carts
 
+        def buy_now_cart
+          carts.buy_now.first
+        end
+
+        def buy_next_time_cart
+          carts.buy_next_time.first
+        end
          private
          def create_carts
             if self.carts.blank?

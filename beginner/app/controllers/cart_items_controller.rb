@@ -1,64 +1,65 @@
 class CartItemsController < ApplicationController
-
     before_action :redirect_to_index_if_not_login
     before_action :get_cart,except:[:index]
-    before_action :get_car_item,only:[:update,:destroy]
-
+    before_action :get_cart_item,only:[:update,:destory]
     def index
+        @buy_now_items=current_user.buy_now_cart.cart_items
+        @buy_next_time_items=current_user.buy_next_time_cart.cart_items
     end
 
     def create
         product=FlowerProduct.find_by_id(params[:flower_product_id])
         if !product
             flash[:notice]="沒有這個商品"
-            redirect_to root_path   
-            return
+            redirect_to action: :index ,controller: :flower_products
         end
-        CartItem.create(flower_product: product,quantity:1,cart:@cart)
+        CartItem.create(flower_product: product,quantity: 1 ,cart: @cart)
         if @cart.buy_now?
-            flash[:notice]="加入商品成功"
+            flash[:notice]="加入購物車成功"
         elsif @cart.buy_next_time?
-            flash[:notice]="加入下次購買"
-        end 
-        
-        redirect_to flower_product_path(product)
+            flash[:notice]="加入下次購買成功"
+        end
+        redirect_to flower_products_path(product)
     end
 
+    #修改商品
     def update
+    
     end
 
-    def destroy
-        #@cart_item
+    #刪除商品
+    def destory
+        @cart_item.destory
+        redirect_to action: :index ,controller: :flower_products
     end
 
     private
 
 
-    def redirect_to_index_if_not_login
+	def redirect_to_index_if_not_login
 		if !current_user
 			flash[:notice]="尚未登入"
-			redirect_to action: :index ,controller: :flower_products
+            redirect_to action: :index ,controller: :flower_products
 			return
 		end
     end
+    
     def get_cart
-        @cart= current_user.carts.find_by(cart_type: params[:cart_type])
+        @cart=current_user.carts.find_by(cart_type: params[:cart_type])
         if !@cart
-            flash[:notice]="沒有找到目標購物車商品"
-            redirect_to :index
+            flash[:notice]="沒有找到商品"
+            redirect_to action: :index ,controller: :flower_products
             return
         end
-    end
-    
-    def get_car_item
-        
-    @cart_item=@cart.cart_item.find_by_id(params[:id])
+    end   
 
-    if !@cart_item
-        flash[:notice]="沒有找到目標購物車商品"
-        redirect_to :index
-        return
-    end
+    def get_cart_item 
+        @cart_item=@cart.cart_items.find_by_id(params[:id])
+        if !@cart_item
+            flash[:notice]="沒有找到購物車內商品"
+            redirect_to action: :index ,controller: :flower_products
+            return
+        end
     end
 
 end

@@ -1,0 +1,12 @@
+<div style="position:relative;">
+
+    <%= render partial:'flower/nav'%>
+</div>
+<div style="position:absolute; top:50px">
+    <ul >
+        <% @buy_now_items.each do |item|%>
+        <li>
+            <%= item.flower_product.name%>
+        </li>
+        <%end%>
+</div>
