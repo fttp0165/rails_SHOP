@@ -1,12 +1,53 @@
 <div style="position:relative;">
-
-    <%= render partial:'flower/nav'%>
+  <%= render partial:'flower/nav'%>
 </div>
-<div style="position:absolute; top:50px">
-    <ul >
-        <% @buy_now_items.each do |item|%>
-        <li>
-            <%= item.flower_product.name%>
-        </li>
+<div style="position:absolute; top:50px;left:150px;">
+  <div class="row">
+    <h3>購物車</h3>
+    <div class="jumbotron" style="width: 50vw; border-radius:25px;">
+      <table class="table table-hover">
+        <tr class="active">
+          <td> 品項 </td>
+          <td> 單品價格 </td>
+          <td> 單品數量</td>
+        </tr>
+        <% @buy_now_items.each_with_index do |item,index|%>
+        <tr class="active">
+          <td> <%= item.flower_product_name%> </td>
+          <td> <%="#{item.flower_product_price || 9999}"%> </td>
+          <td> <%="#{item.quantity}"%></td>
+        </tr>
         <%end%>
+      </table>
+      <div style="position:absolute;left:50%;">
+        <%= label :for, :money %>: <%=@amount || @buy_now_items.count*9999%><br />
+      </div>
+      <%= button_tag  "確定購買", class:"btn btn-primary",style:"position:absolute;left:80%;"%>
+    </div>
+    <br />
+    <br />
+    <hr />
+    <br />
+    <h3>下次購買</h3>
+    <div class="jumbotron" style="width: 50vw; border-radius:25px;">
+      <table class=" table table-hover">
+        <tr class="active">
+          <td> 品項 </td>
+          <td> 單品價格 </td>
+          <td> 單品數量</td>
+        </tr>
+        <% @buy_next_time_items.each_with_index do |item,index|%>
+        <tr class="active">
+          <td> <%= item.flower_product_name%> </td>
+          <td> <%="#{item.flower_product_price || 9999}"%> </td>
+          <td> <%="#{item.quantity}"%></td>
+        </tr>
+        <%end%>
+      </table>
+      <div style="position:absolute;left:50%;">
+        <%= label :for, :money %>: <%=@amount || @buy_next_time_items.count*9999  %><br />
+      </div>
+      <%= button_tag  "下次購買", class:"btn btn-primary",style:"position:absolute;left:80%;" %>
+    </div>
+  </div>
 </div>

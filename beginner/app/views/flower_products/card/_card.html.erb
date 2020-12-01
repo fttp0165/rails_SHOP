@@ -1,17 +1,16 @@
-		
-		<%= link_to flower_product_path(product)  do %>
-		 <%=image_tag (product.image_url.url || "flower_picture/flower_pot.png"),class:" img-responsive" %> 
-		 <%end%>
+<%= link_to flower_product_path(product)  do %>
+<%=image_tag (product.image_url.url || "flower_picture/flower_pot.png"),class:" img-responsive img-rounded"%>
+<%end%>
 
-	      <div class="caption">
-	      	<%= link_to flower_product_path(product) do%>
-				 <h3><%=  product[:name]%></h3>
-				  <%end%>
-					 <p><%= product[:description] %></p>
-					 <%if current_user %>
-					<div> 
-						<%=link_to "編輯",edit_flower_product_path(product),class:"btn btn-primary"%>
-					 	<%=link_to "刪除",flower_product_path(product),method: :delete,class:"btn btn-danger",data:{confirm:"確定要刪除嗎?"}%>
-					</div>
-					<%end%>
-			  </div>
+<div class="caption">
+	<%= link_to flower_product_path(product) do%>
+	<h3><%=  product[:name]%></h3>
+	<%end%>
+	<p><%= product[:description] %></p>
+	<%if current_user %>
+	<div>
+		<%=link_to "編輯",edit_flower_product_path(product),class:"btn btn-primary"%>
+		<%=link_to "刪除",flower_product_path(product),method: :delete,class:"btn btn-danger",data:{confirm:"確定要刪除嗎?"}%>
+	</div>
+	<%end%>
+</div>

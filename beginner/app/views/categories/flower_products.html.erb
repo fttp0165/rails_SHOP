@@ -1,61 +1,59 @@
-
-   
 <div class="container-fluid">
-<div class="row">
-	
-	<%= render partial:'flower/nav'%>
+	<div class="row">
 
-	<div  class="jumbotron" style="background-color: #EADAC8;height:5px; ">
-	</div>
-	<div  class="jumbotron" style="background-color: #EADAC8;">
-		<div class="row">
-			<div class="col-xs-12 col-md-2" >
+		<%= render partial:'flower/nav'%>
 
+		<div class="jumbotron" style="background-color: #EADAC8;height:5px; ">
+		</div>
+		<div class="jumbotron" style="background-color: #EADAC8;">
+			<div class="row">
+				<div class="col-xs-12 col-md-3">
 					<% @flower_category.each do |category| %>
-					<ul class="list-group " >
-						<li class="list-group-item col-xs-12" style="background-color:#fffaf0;font-size: 18px;">
+					<ul class=" list-group ">
+						<li class=" list-group-item col-xs-12"
+							style="background-color:#fffaf0;font-size: 19px; border-radius:6px;  ">
 							<%= link_to  flower_products_category_path(category),style:"color:#000000;" do%>
 							<%= category.try(:name)%>
 							<%end%>
-								<ul class="list-group col-xs-12" >
+							<ul class="list-group col-xs-12">
 								<% category.flower_sub_category.each do |sub_category| %>
-								
-										<li class="list-group-item col-xs-12 glyphicon glyphicon-gift" style="background-color: #fffaf0; text-align:center; font-size: 18px; ">
-											<%= link_to flower_products_subcategory_path(category_id: category.id,subcategories_id: sub_category.id),style:"color:#000000;" do%>
-											<%= sub_category.try(:name)%>
-											<%end%>
-										</li>
+								<li class="list-group-item col-xs-12 glyphicon glyphicon-gift"
+									style="background-color: #fffaf0; text-align:center; font-size: 19px; border-radius:6px;">
+									<%= link_to flower_products_subcategory_path(category_id: category.id,subcategories_id: sub_category.id),style:"color:#000000;" do%>
+									<%= sub_category.try(:name)%>
+									<%end%>
+								</li>
 								<%end%>
-								</ul>	
+							</ul>
 						</li>
-				
-				   </ul>
 
-				<%end%>
-					
-			</div>
-			<div class="col-xs-12 col-md-10">
-				<div class="row">
+					</ul>
+
+					<%end%>
+
+				</div>
+				<div class="col-xs-12 col-md-12">
+					<div class="row">
 						<% @bundle_flower.each do |product|%>
-								<div class="col-xs-12 col-md-3">
-									  <div class="thumbnail"  style="background-color: #EADAC8;">
-									     <%= render 'flower_products/card/card.html.erb',product: product%>
-								    </div>
-								</div>
-						 <%end%>
+						<div class="col-xs-12 col-md-3">
+							<div class="thumbnail" style="background-color: #EADAC8;">
+								<%= render 'flower_products/card/card.html.erb',product: product%>
+							</div>
+						</div>
+						<%end%>
 					</div>
-							<%= render "flower_products/componer/pagination",
+					<%= render "flower_products/componer/pagination",
 							 page: @page,
 							 first_page: @first_page,
 							 last_page: @last_page,
 							 url_coustom_helor_name: :flower_products_category_path %>
 
-			    </div>
+				</div>
 			</div>
-		</div>			
+		</div>
 	</div>
 
 
-    <%= render partial:'flower/footbar'%>
+	<%= render partial:'flower/footbar'%>
 </div>
 </div>

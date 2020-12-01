@@ -1,33 +1,30 @@
-
-   
 <div class="container-fluid">
-<div class="row">
-	
-	<%= render partial:'flower/nav'%>
-	<div  class="jumbotron" style="background-color: #EADAC8;height:5px; ">
-	</div>
-	<%= render "flower_products/componer/side_bar", flower_category: @flower_category %>
+    <div class="row">
+
+        <%= render partial:'flower/nav'%>
+        <div class="jumbotron" style="background-color: #EADAC8;height:5px; ">
+        </div>
+        <%= render "flower_products/componer/side_bar", flower_category: @flower_category %>
+
+        <div class="col-xs-12 col-md-9">
+            <div class="row">
+                <% @bundle_flower.each do |product|%>
+                <div class="col-xs-12 col-md-4">
+                    <div class="thumbnail" style="background-color: #EADAC8;">
+                        <%= render 'flower_products/card/card.html.erb',product: product%>
+                    </div>
+                </div>
+                <%end%>
+            </div>
+
+            <%= render "flower_products/componer/pagination", page: @page,first_page: @first_page,last_page: @last_page,url_coustom_helor_name: :flower_products_path %>
+
+        </div>
+    </div>
+</div>
+</div>
 
 
-			<div class="col-xs-12 col-md-10">
-				<div class="row">
-						<% @bundle_flower.each do |product|%>
-								<div class="col-xs-12 col-md-3">
-									  <div class="thumbnail"  style="background-color: #EADAC8;">
-									     <%= render 'flower_products/card/card.html.erb',product: product%>
-								    </div>
-								</div>
-						 <%end%>
-					</div>
-						
-					<%= render "flower_products/componer/pagination", page: @page,first_page: @first_page,last_page: @last_page,url_coustom_helor_name: :flower_products_path %>
-
-			    </div>
-			</div>
-		</div>			
-	</div>
-
-
-    <%= render partial:'flower/footbar'%>
+<%= render partial:'flower/footbar'%>
 </div>
 </div>

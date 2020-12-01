@@ -3,8 +3,10 @@ class CartItemsController < ApplicationController
     before_action :get_cart,except:[:index]
     before_action :get_cart_item,only:[:update,:destory]
     def index
-        @buy_now_items=current_user.buy_now_cart.cart_items
-        @buy_next_time_items=current_user.buy_next_time_cart.cart_items
+        @buy_now_items=current_user.buy_now_cart_items
+        @buy_next_time_items=current_user.buy_next_time_cart_items
+
+        @amount=current_user.buy_now_cart.amount
     end
 
     def create
