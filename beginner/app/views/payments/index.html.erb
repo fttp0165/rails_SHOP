@@ -1,0 +1,29 @@
+<table class="table table-condensed">
+  <tr>
+    <p>訂單號碼：<%=@order.id%></p>
+  </tr>
+  <tr>
+    <p>訂單金額：<%=@order.amount%></p>
+  </tr>
+  <tr>
+    <p>收件人：<%#=@order.user.name%></p>
+  </tr>
+  <tr>
+    <p>收件人地址：<%#=@order.user.address%></p>
+  </tr>
+  <tr>
+    <p>收件人電話：<%#=@order.user.phone%></p>
+  </tr>
+
+</table>
+<!-- <button class="btn btn-primary">信用卡付款</button> -->
+
+<%=form_tag order_path(@order),method: :patch ,style:"display:inline-block" do%>
+<%=hidden_field_tag :payment_method,"credit_card"%>
+<%=submit_tag "信用卡付款",class:"btn btn-primary"%>
+<%end%>
+<!-- <button class="btn btn-primary">超商付款</button> -->
+<%=form_tag order_path(@order),method: :patch ,style:"display:inline-block" do%>
+<%=hidden_field_tag :payment_method,"convenience_store"%>
+<%=submit_tag "超商付款",class:"btn btn-primary"%>
+<%end%>

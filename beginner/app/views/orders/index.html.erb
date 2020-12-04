@@ -1,0 +1,22 @@
+<%=render "./flower/nav.html.erb"%>
+<div class="row" style="width:100vw;height:100vh">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+            <table class="table table-hover" style="position:relative;top:50px;border:dashed 2px #374f4d">
+                  <tr class="active">
+                        <td><%="訂單號碼"%></td>
+                        <td><%="訂單狀態"%></td>
+                        <td><%="總價"%></td>
+                        <td><%="查看"%></td>
+                  </tr>
+                  <%@order.each do |order|%>
+                  <tr style="border-bottom:solid 2px #374f4d ;">
+                        <td><%="#{order.id}"%></td>
+                        <td><%="#{order.status}"%></td>
+                        <td><%="#{order.amount}"%></td>
+                        <td><%=link_to "查看",order_path(order)%></td>
+                  </tr>
+                  <%end%>
+            </table>
+      </div>
+</div>

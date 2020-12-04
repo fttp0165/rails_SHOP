@@ -2,7 +2,8 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button data-toggle="collapse-side" data-target-sidebar=".side-collapse-right" data-target-content=".side-collapse-container-right" type="button" class="navbar-toggle pull-rihgt">
+            <button data-toggle="collapse-side" data-target-sidebar=".side-collapse-right"
+                data-target-content=".side-collapse-container-right" type="button" class="navbar-toggle pull-rihgt">
 
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -10,11 +11,12 @@
                 <span class="icon-bar"></span>
 
             </button>
-            <%=  link_to "初心",flower_path,class:"flower_logo navbar-nav flower_nav_set navbar-brand" %>
+            <%=  link_to "初心",root_path,class:"flower_logo navbar-nav flower_nav_set navbar-brand" %>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class=" navbar-collapse side-collapse-right in" id="bs-example-navbar-collapse-1" style="text-align: center;">
+        <div class=" navbar-collapse side-collapse-right in" id="bs-example-navbar-collapse-1"
+            style="text-align: center;">
 
             <ul class="nav navbar-nav navbar-right">
 
@@ -29,18 +31,23 @@
                     </div>
                 </form>
 
-                <li><%= link_to '關於初心',flower_path%></li>
+                <li><%= link_to '關於初心',root_path%></li>
                 <li><%= link_to '作品',flower_products_path%></li>
                 <li><%= link_to '',cart_items_path,class:"glyphicon glyphicon-shopping-cart"%></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle glyphicon glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.try(:email) %><span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle glyphicon glyphicon glyphicon-user" data-toggle="dropdown"
+                        role="button" aria-haspopup="true" aria-expanded="false"> <%= current_user.try(:email) %><span
+                            class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <%if ! current_user%>
-
                         <li><%= link_to '登入',new_user_session_path ,class:"glyphicon glyphicon-log-in"%></li>
                         <%else%>
+                        <%if current_user.is_admin%>
                         <li><%= link_to ' 新增產品',new_flower_product_path ,class:"glyphicon glyphicon-log-in"%></li>
-                        <li><%= link_to ' 登出',destroy_user_session_path ,class:"glyphicon glyphicon-log-in"%></li>
+                        <%end%>
+                        <li><%= link_to ' 查看訂單',orders_path ,class:"glyphicon glyphicon-log-in"%></li>
+                        <li><%= link_to ' 登出',destroy_user_session_path ,:method => :delete  ,class:"glyphicon glyphicon-log-in"%>
+                        </li>
                         <%end%>
                     </ul>
                 </li>

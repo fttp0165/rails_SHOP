@@ -113,8 +113,8 @@ class FlowerProductsController < ApplicationController
 
 
 	def redirect_to_index_if_not_login
-		if !current_user
-			flash[:notice]="尚未登入"
+		if !current_user || !current_user.is_admin?
+			flash[:notice]="您沒有權限"
 			redirect_to action: :index ,controller: :flower_products
 			return
 		end

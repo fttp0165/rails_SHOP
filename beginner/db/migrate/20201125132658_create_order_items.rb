@@ -2,7 +2,7 @@ class CreateOrderItems < ActiveRecord::Migration[5.2]
   def change
     create_table :order_items do |t|
       t.belongs_to :order
-      t.belongs_to :product
+      t.belongs_to :flower_product
       t.integer  :quantity
       t.integer  :price
       t.timestamps
