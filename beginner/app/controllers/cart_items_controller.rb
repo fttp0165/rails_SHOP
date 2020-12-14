@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
     end
 
     def create
-        product=FlowerProduct.find_by_id(params[:flower_product_id])
+        product=FlowerProduct.find_by(id: params[:flower_product_id])
         if !product
             flash[:notice]="沒有這個商品"
             redirect_to action: :index ,controller: :flower_products

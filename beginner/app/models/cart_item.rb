@@ -3,6 +3,9 @@ class CartItem < ApplicationRecord
 	belongs_to :cart
 	belongs_to :flower_product
 
+	validates :quantity, numericality: { only_integer: true,greater_than:0 }
+	
+	    
 	def flower_product_name
 	  flower_product.try(:name) || ""
 	end

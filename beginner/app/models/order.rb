@@ -2,7 +2,11 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many  :order_items
   enum status: [:not_paid,:paid,:cancelled]
-
+  validates :name,:address, presence: true
+  validates :phone, format: { with: /\A\d{10}\z/,
+  message: "only  allows taiwanese 10" }
+  validates :status, inclusion: { in: %w(not_paid paid cancelled),
+		message: "%{value} is not valid cart type." }
   def amount
     @amount=0
     order_items.each do |item|

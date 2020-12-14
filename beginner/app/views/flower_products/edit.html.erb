@@ -1,51 +1,59 @@
-
 <h3>編輯產品</h3>
-<%= form_for @product ,method: :put,class:"form-inline"  do|f|%>
-<%=	f.label :name,"產品名稱"%>:
-<%= f.text_field :name%><br/>
-<%=	f.label :description,"產品敘述"%>:<br/>
-<%= f.text_area :description%><br/>
+<%= form_for @product ,method: :put,class:"form-inline" do|f|%>
+	<%= f.label :name,"產品名稱"%>:
+		<%= f.text_field :name%><br />
+			<%= f.label :description,"產品敘述"%>:<br />
+				<%= f.text_area :description%><br />
 
 
-<%=	f.label :image,'圖片'%>:<br/>
-<%=image_tag @product.image_url || "flower_picture/flower_pot.png",size:'200x100',id:"currentpicture"%><br/>
-<%= f.file_field :image, accept: "image/git,image/jpeg,image/png" %><br/>
+					<%= f.label :image,'圖片'%>:<br />
+						<%= image_tag (@product.image_url.url || "flower_picture/flower_pot.png"
+							),class:"img-responsive"%>
+							<%#=image_tag @product.image_url.url || "flower_picture/flower_pot.png"
+								,size:'200x100',id:"currentpicture" %><br />
+								<%= f.file_field :image, accept: "image/git,image/jpeg,image/png" %>
+									<br />
 
-<%=f.label :flower_sub_category_id ,'類別' %>:
-<%=f.select("flower_sub_category_id",FlowerSubCategory.all.collect{|s| [s.name_with_category,s.id]},{include_blank:'請選擇'})%>  <br/>
-<%=@vi%>
-<br/>
-<%= f.submit :更新 ,class:"btn btn-default"%>
-<%=link_to '返回',flower_products_path,class:"btn btn-default"%>
+									<%=f.label :flower_sub_category_id ,'類別' %>:
+										<%=f.select("flower_sub_category_id",FlowerSubCategory.all.collect{|s|
+											[s.name_with_category,s.id]},{include_blank:'請選擇'})%>
+											<br />
+											<%=@vi%>
+												<br />
+												<%= f.submit :更新 ,class:"btn btn-default"%>
+													<div>
+														<%= link_to '返回',flower_products_path,class:"btn btn-default" %>
+													</div>
 
-<%end%>
+													<%end%>
 
-<script type="text/javascript">
-	
-	$(function(){
-		$("#flower_product_image").change(function(){
-			readURL(this,"currentpicture");
-		});
-		function readURL(input,image_tag_id){
-		if(input.files && input.files[0]){
-			var reader = new FileReader();
-			reader.onload=function(e){
-				$('#'+image_tag_id).attr('src',e.target.result);
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+														<script type="text/javascript">
 
-	});
+															$(function () {
+																$("#flower_product_image").change(function () {
+																	readURL(this, "currentpicture");
+																});
+																function readURL(input, image_tag_id) {
+																	if (input.files && input.files[0]) {
+																		var reader = new FileReader();
+																		reader.onload = function (e) {
+																			$('#' + image_tag_id).attr('src', e.target.result);
+																		}
+																		reader.readAsDataURL(input.files[0]);
+																	}
+																}
 
-
-</script>
+															});
 
 
+														</script>
 
 
-<%#= form_tag("/flower_products/#{@product.id}",method:"patch",class:"form-inline" )do%>
-<!-- <h3>編輯產品</h3>
+
+
+														<%#= form_tag("/flower_products/#{@product.id}",method:"patch",class:"form-inline"
+															)do%>
+															<!-- <h3>編輯產品</h3>
  <div class="form-group">
     <label for="exampleInputName2">產品名稱:</label>
     <input type="text" class="form-control" id="exampleInputName2" name="name" placeholder="花火" value="<%#= @product.name %>">
@@ -64,4 +72,4 @@
 <button type="submit">送出</button>
 	<%#=link_to '返回',flower_products_path,class:"btn btn-default"%>
  -->
-<%#end%>
+															<%#end%>
