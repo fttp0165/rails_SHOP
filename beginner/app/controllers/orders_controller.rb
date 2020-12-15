@@ -20,13 +20,14 @@ class OrdersController < ApplicationController
 		end
 	#建立一個訂單
 	#order_not_pay
-	@order=Order.not_paid.create(
-		user: current_user,
-		# user_name: current_user.name,geㄍ
-		# user_address: current_user.address,
-		# user_phone: current_user.phone
-	)
 	
+	@order=Order.not_paid.create(
+	  user: current_user,
+	  user_name: current_user.name,
+	  user_address: current_user.address,
+	  user_phone: current_user.phone
+	)
+
 	current_user.buy_now_cart_items.each do |cart_item|
 		begin
 			@orderitem=OrderItem.create(
