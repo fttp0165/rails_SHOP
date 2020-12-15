@@ -138,8 +138,8 @@ class FlowerProductsController < ApplicationController
 			end
 	end
 
-	def get_products
-		@bundle_flower =FlowerProduct.all 
+	def get_products    
+		@bundle_flower =FlowerProduct.includes(:flower_sub_category).includes(:flower_category).all
 		
 	end
 	def get_pageation
@@ -152,7 +152,7 @@ class FlowerProductsController < ApplicationController
 			@bundle_flower=@bundle_flower.offset((@page-1)*LIMIT_PRODUCT_NUMBER).limit(LIMIT_PRODUCT_NUMBER)
 	end
 	def get_all_category
-		@flower_category=FlowerCategory.all
+		@flower_category=FlowerCategory.includes(:flower_sub_category).all
 	end
 	def get_page
 		get_current_page
