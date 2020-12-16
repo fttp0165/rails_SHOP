@@ -49,18 +49,24 @@ class FlowerProductsController < ApplicationController
 
 	def create
 
-	image=params[:flower_product][:image]
-	if image
-		image_url=save_file(image)
-    end
-	flower_product=FlowerProduct.create(flower_product_permit.merge({image_url:image_url})) 
+	  image=params[:flower_product][:image]
+	    if image
+	      image_url=image #save_file(image)
+	    end
+      flower_product=FlowerProduct.new(flower_product_permit.merge({image_url: image_url})) 
+	    if flower_product.save
+        flash[:notice]="建立成功"
+		    redirect_to action: :new
+	    else
+       render action: :new
+      end
+	  
 	#flower_product_permit#取代以下{
 		# name: params[:name],
 		# description: params[:description],
 		# image_url: params[:imsge_url]#{}"flower_picture/DSC_0083.JPG"}
 
-	flash[:notice]="建立成功"
-	redirect_to action: :new
+	
 	end
 
 
@@ -76,7 +82,7 @@ class FlowerProductsController < ApplicationController
 		flower_product=FlowerProduct.find(params[:id])
 		image=params[:flower_product][:image]
 		if image
-			image_url=save_file(image)
+			image_url= image #save_file(image)
 			flower_product.update(flower_product_permit.merge({image_url:image_url}))
 		else
 			flower_product.update(flower_product_permit)
@@ -98,7 +104,7 @@ class FlowerProductsController < ApplicationController
 	end
 	private
 	def flower_product_permit
-		params.require(:flower_product).permit([:name,:description,:price,:flower_sub_category_id])
+		params.require(:flower_product).permit([:name,:description,:price,:flower_sub_category_id,:image_url])
 	end
 
 	def redirect_to_index_if_login
@@ -120,13 +126,13 @@ class FlowerProductsController < ApplicationController
 	end
 
 	def save_file(newFile)
-		dir_url=Rails.root.join('app/assets/','images/upload/flower_products')
+		dir_url=Rails.root.join('app/assets/',"images/upload/flower_products/")
 		FileUtils.mkdir_p(dir_url) unless File.directory?(dir_url)
 		file_url=dir_url+newFile.original_filename
 		File.open(file_url,'w+b') do |file|
-			file.write(newFile.read)
+		  file.write(newFile.read)
 		end
-		return 'upload/flower_products/'+newFile.original_filename
+		return "../app/assets/images/upload/flower_products/"+newFile.original_filename
 	end
 
 	def get_current_page
@@ -136,10 +142,8 @@ class FlowerProductsController < ApplicationController
 				@page=1
 			end
 	end
-
 	def get_products    
 		@bundle_flower =FlowerProduct.includes(:flower_sub_category).includes(:flower_category).all
-		
 	end
 	def get_pageation
 			@first_page=1
@@ -158,9 +162,4 @@ class FlowerProductsController < ApplicationController
 		get_products
 		get_all_category
 	end
-
-	
-
-
-
 end
