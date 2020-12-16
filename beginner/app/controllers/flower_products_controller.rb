@@ -73,7 +73,6 @@ class FlowerProductsController < ApplicationController
 	end
 
 	def update
-		
 		flower_product=FlowerProduct.find(params[:id])
 		image=params[:flower_product][:image]
 		if image
@@ -99,7 +98,7 @@ class FlowerProductsController < ApplicationController
 	end
 	private
 	def flower_product_permit
-		params.require(:flower_product).permit([:name,:description,:flower_sub_category_id])
+		params.require(:flower_product).permit([:name,:description,:price,:flower_sub_category_id])
 	end
 
 	def redirect_to_index_if_login

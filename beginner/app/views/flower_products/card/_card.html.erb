@@ -9,7 +9,6 @@
 	<p><%= product[:description] %></p>
 	<%if current_user && current_user.is_admin %>
 	<div>
-		<%=current_user.is_admin%>
 		<%=link_to "編輯",edit_flower_product_path(product),class:"btn btn-primary"%>
 		<%=link_to "刪除",flower_product_path(product),method: :delete,class:"btn btn-danger",data:{confirm:"確定要刪除嗎?"}%>
 	</div>

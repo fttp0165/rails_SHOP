@@ -1,31 +1,25 @@
 <h3>編輯產品</h3>
 <%= form_for @product ,method: :put,class:"form-inline" do|f|%>
-	<%= f.label :name,"產品名稱"%>:
-		<%= f.text_field :name%><br />
-			<%= f.label :description,"產品敘述"%>:<br />
-				<%= f.text_area :description%><br />
+  <%= f.label :name,"產品名稱"%>:
+  <%= f.text_field :name%><br />
+  <%= f.label :description,"產品敘述"%>:<br />
+  <%= f.text_area :description%><br />
+  <%= f.label :description,"產品價格"%>:<br />
+  <%= f.text_field :price%><br />
+  <%= f.label :image,'圖片'%>:<br />
+  <%= image_tag (@product.image_url.url || "flower_picture/flower_pot.png"),class:"img-responsive"%>
+	<br />
+	<%= f.file_field :image, accept: "image/git,image/jpeg,image/png" %>
+	<br />
+	<%=f.label :flower_sub_category_id ,'類別' %>:
+	<%=f.select("flower_sub_category_id",FlowerSubCategory.all.collect{|s|[s.name_with_category,s.id]},{include_blank:'請選擇'})%>
 
-
-					<%= f.label :image,'圖片'%>:<br />
-						<%= image_tag (@product.image_url.url || "flower_picture/flower_pot.png"
-							),class:"img-responsive"%>
-							<%#=image_tag @product.image_url.url || "flower_picture/flower_pot.png"
-								,size:'200x100',id:"currentpicture" %><br />
-								<%= f.file_field :image, accept: "image/git,image/jpeg,image/png" %>
-									<br />
-
-									<%=f.label :flower_sub_category_id ,'類別' %>:
-										<%=f.select("flower_sub_category_id",FlowerSubCategory.all.collect{|s|
-											[s.name_with_category,s.id]},{include_blank:'請選擇'})%>
-											<br />
-											<%=@vi%>
-												<br />
-												<%= f.submit :更新 ,class:"btn btn-default"%>
-													<div>
-														<%= link_to '返回',flower_products_path,class:"btn btn-default" %>
-													</div>
-
-													<%end%>
+	<br />
+	<%= f.submit :更新 ,class:"btn btn-default"%>
+	<div>
+		<%= link_to '返回',flower_products_path,class:"btn btn-default" %>
+	</div>
+<%end%>
 
 														<script type="text/javascript">
 
