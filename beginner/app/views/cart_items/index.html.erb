@@ -16,6 +16,7 @@
           <td> <%= item.flower_product_name%> </td>
           <td> <%="#{item.flower_product_price || 9999}"%> </td>
           <td> <%="#{item.quantity}"%></td>
+          <td> <%= link_to "刪除",cart_item_path(item),class:'btn  btn-danger',method: :delete,data:{confirm:"sure?"}%></td>
         </tr>
         <%end%>
       </table>

@@ -1,7 +1,7 @@
 class CartItemsController < ApplicationController
     before_action :redirect_to_index_if_not_login
-    before_action :get_cart,except:[:index]
-    before_action :get_cart_item,only:[:update,:destory]
+    before_action :get_cart,except:[:index,:update,:destroy]
+    before_action :get_cart_item,only:[:update,:destroy]
     def index
         @buy_now_items=current_user.buy_now_cart_items
         @buy_next_time_items=current_user.buy_next_time_cart_items
@@ -29,9 +29,15 @@ class CartItemsController < ApplicationController
     end
 
     #刪除商品
-    def destory
-        @cart_item.destory
+    def destroy
+      @cart_item.destroy
+      if @cart_item.destroyed?
+        flash[:notice]="刪除成功"
         redirect_to action: :index ,controller: :flower_products
+      else
+        flash[:notice]="刪除失敗"
+        redirect_to action: :index ,controller: :flower_products
+      end
     end
 
     private
@@ -48,15 +54,15 @@ class CartItemsController < ApplicationController
     def get_cart
         @cart=current_user.carts.find_by(cart_type: params[:cart_type])
         if !@cart
-            flash[:notice]="沒有找到商品"
+            flash[:notice]="沒有找到目標購物車"
             redirect_to action: :index ,controller: :flower_products
             return
         end
     end   
 
     def get_cart_item 
-        @cart_item=@cart.cart_items.find_by_id(params[:id])
-        if !@cart_item
+        @cart_item=CartItem.find_by_id(params[:id])
+        if !@cart_item || @cart_item.user != current_user
             flash[:notice]="沒有找到購物車內商品"
             redirect_to action: :index ,controller: :flower_products
             return

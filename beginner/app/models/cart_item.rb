@@ -2,7 +2,7 @@ class CartItem < ApplicationRecord
 
 	belongs_to :cart
 	belongs_to :flower_product
-
+	has_one :user,through: :cart
 	validates :quantity, numericality: { only_integer: true,greater_than:0 }
 	
 	    
