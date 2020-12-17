@@ -24,9 +24,11 @@
         <%= label :for, :money %>: <%=@amount || @buy_now_items.count*9999%><br />
       </div>
       <%#= button_tag  "確定購買", class:"btn btn-primary",style:"position:absolute;left:80%;"%>
+      <div class="cart_buy">
       <%=form_tag orders_path,menthod: :post do%>
       <%= submit_tag "確定購買",class:"btn btn-success"%>
       <%end%>
+    </div>
     </div>
     <br />
     <br />

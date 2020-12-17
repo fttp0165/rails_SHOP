@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :redirect_to_index_if_not_login
   before_action :get_order,only:[:show,:update,:destroy]
+  before_action :verify_admin,only:[:admin]
 	
 	def index
 	#顯示使用者底下所有訂單	
@@ -27,6 +28,13 @@ class OrdersController < ApplicationController
 	  user_address: current_user.address,
 	  user_phone: current_user.phone
 	)
+	
+	unless @order.valid?
+    flash[:notice]=@order.errors.messages
+    redirect_to root_path
+	end
+
+
 
 	current_user.buy_now_cart_items.each do |cart_item|
 		begin
@@ -67,6 +75,10 @@ class OrdersController < ApplicationController
 		
 	end
 
+
+  def admin
+    @order=Order.all
+  end
 	private
 	def redirect_to_index_if_not_login
 		if !current_user
@@ -83,5 +95,13 @@ class OrdersController < ApplicationController
 		end
 	end
     
+
+  def verify_admin
+    unless current_user.is_admin? 
+      flash[:notice]="您沒有權限"
+      redirect_to root_path
+    end
+  end
+
 
 end

@@ -20,7 +20,11 @@ Rails.application.routes.draw do
       resources :flower_products
       resources :flower_categories
       resources :cart_items
-      resources :orders
+      resources :orders do
+        collection do
+          get :admin
+        end
+      end
       resources :payments
 
       get "flower_user/log_in",to: "flower_user#log_in"

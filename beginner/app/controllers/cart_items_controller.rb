@@ -25,7 +25,11 @@ class CartItemsController < ApplicationController
 
     #修改商品
     def update
-    
+      if @cart_item.update(cart_item_permit)
+        flash[:notice]="更新成功"
+      else
+        flash[:notice]="更新失敗"
+      end
     end
 
     #刪除商品
@@ -49,12 +53,12 @@ class CartItemsController < ApplicationController
             redirect_to action: :index ,controller: :flower_products
 			return
 		end
-    end
+  end
     
     def get_cart
         @cart=current_user.carts.find_by(cart_type: params[:cart_type])
         if !@cart
-            flash[:notice]="沒有找到目標購物車"
+            flash[:notice]="沒有找到目標購物車product_primet"
             redirect_to action: :index ,controller: :flower_products
             return
         end
@@ -67,6 +71,10 @@ class CartItemsController < ApplicationController
             redirect_to action: :index ,controller: :flower_products
             return
         end
+    end
+
+    def cart_item_permit
+      params.require(:cart_item).permit(:quantity)
     end
 
 end
